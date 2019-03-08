@@ -4,7 +4,6 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { View, Image, Dimensions } from 'react-native';
 import { DrawerNavigator, DrawerItems } from 'react-navigation';
 
-import Components from './src/drawer/components';
 import Ratings from './src/drawer/ratings';
 import Pricing from './src/drawer/pricing';
 import Login from './src/drawer/login';
@@ -17,11 +16,11 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const CustomDrawerContentComponent = props => (
   <View style={{ flex: 1, backgroundColor: '#43484d' }}>
     <View
-      style={{ marginTop: 40, justifyContent: 'center', alignItems: 'center' }}
+      style={{ marginTop: -100, marginBottom: -100, justifyContent: 'center', alignItems: 'center' }}
     >
       <Image
         source={require('./src/images/logo.png')}
-        style={{ width: SCREEN_WIDTH * 0.57 }}
+        style={{ width: SCREEN_WIDTH * 0.5 }}
         resizeMode="contain"
       />
     </View>
@@ -45,10 +44,6 @@ const MainRoot = DrawerNavigator(
       path: '/lists',
       screen: Lists,
     },
-    Components: {
-      path: '/components',
-      screen: Components,
-    },
     Ratings: {
       path: '/ratings',
       screen: Ratings,
@@ -63,7 +58,7 @@ const MainRoot = DrawerNavigator(
     },
   },
   {
-    initialRouteName: 'Components',
+    initialRouteName: 'Login',
     contentOptions: {
       activeTintColor: '#548ff7',
       activeBackgroundColor: 'transparent',
