@@ -29,10 +29,10 @@ export default class ListsScreen1 extends React.Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      georgia: require('../../../assets/fonts/Georgia.ttf'),
-      regular: require('../../../assets/fonts/Montserrat-Regular.ttf'),
-      light: require('../../../assets/fonts/Montserrat-Light.ttf'),
-      bold: require('../../../assets/fonts/Montserrat-Bold.ttf'),
+      georgia: require('../../assets/fonts/Georgia.ttf'),
+      regular: require('../../assets/fonts/Montserrat-Regular.ttf'),
+      light: require('../../assets/fonts/Montserrat-Light.ttf'),
+      bold: require('../../assets/fonts/Montserrat-Bold.ttf'),
     });
 
     this.setState({ fontLoaded: true });
@@ -90,7 +90,7 @@ export default class ListsScreen1 extends React.Component {
               fontSize: 13,
               color: 'gray',
             }}
-            onPress={() => this.rentCar(index)}
+            onPress={() => this.rentCar(index, index+1)}
             underlayColor="transparent"
           />
         </View>
@@ -119,8 +119,8 @@ export default class ListsScreen1 extends React.Component {
     );
   }
 
-  rentCar(id) {
-    console.log("wanna rent "+ id);
+  rentCar(index, id) {
+    console.log("wanna rent car number "+ id);
     this.setState({ test: "lol" });
   }
 
