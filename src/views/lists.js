@@ -180,7 +180,7 @@ export default class Lists extends React.Component {
                   borderRadius: 5,
                   alignItems: 'center',
                   marginHorizontal: 10,
-                  height: 250,
+                  height: 200,
                   marginBottom: 10,
                 }}
               >
@@ -229,60 +229,6 @@ export default class Lists extends React.Component {
                         Paul Allen
                       </Text>
                     </View>
-                  </View>
-                </View>
-                <View
-                  style={{
-                    width: 300,
-                    borderWidth: 0.5,
-                    borderColor: 'rgba(222, 223, 226, 1)',
-                    marginHorizontal: 20,
-                    height: 1,
-                    marginVertical: 10,
-                  }}
-                />
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}
-                >
-                  <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Button
-                      title="View Profile"
-                      buttonStyle={{
-                        height: 33,
-                        width: 120,
-                        backgroundColor: 'rgba(222, 223, 226, 1)',
-                        borderRadius: 5,
-                      }}
-                      titleStyle={{
-                        fontFamily: 'regular',
-                        fontSize: 13,
-                        color: 'gray',
-                      }}
-                      onPress={() => console.log('aye')}
-                      underlayColor="transparent"
-                    />
-                  </View>
-                  <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Button
-                      title={this.state.test}
-                      buttonStyle={{
-                        height: 33,
-                        width: 120,
-                        backgroundColor: 'rgba(113, 154, 112, 1)',
-                        borderRadius: 5,
-                      }}
-                      titleStyle={{
-                        fontFamily: 'regular',
-                        fontSize: 13,
-                        color: 'white',
-                      }}
-                      onPress={() => console.log('aye')}
-                      underlayColor="transparent"
-                    />
                   </View>
                 </View>
               </View>
