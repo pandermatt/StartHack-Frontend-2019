@@ -210,7 +210,7 @@ export default class ListsScreen1 extends Component {
   /*
         */
 
-  renderListCards() {
+  async renderListCards() {
     let tmp = this;
     this.fetchCars().then(function(carsFromApi){
       tmp.setState({cars: carsFromApi})})
@@ -222,7 +222,7 @@ export default class ListsScreen1 extends Component {
     });
   }
 
-  fetchCars() {
+  async fetchCars() {
     return fetch('http://130.82.236.131:8000/cars')
       .then((response) => response.json())
       .then((responseJson) => {
@@ -248,13 +248,13 @@ export default class ListsScreen1 extends Component {
       */
   }
 
-  shouldComponentUpdate() {
+  /*shouldComponentUpdate() {
     if (this.state.cars.length == 0 || !LOADED) {
       LOADED = false;
       return true;
     }
     return false;
-  }
+  }*/
 
   render() {
     return (
