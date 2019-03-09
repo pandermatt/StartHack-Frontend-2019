@@ -6,7 +6,7 @@ import {
   ImageBackground,
   Dimensions,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { Input, Button } from 'react-native-elements';
 
@@ -51,6 +51,22 @@ export default class Login extends Component {
 
   submitLoginCredentials() {
     const { showLoading } = this.state;
+
+    console.log(this.state);
+
+    fetch('http://130.82.10.126:8000/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        pw: 'yourValue',
+        name: 'yourOtherValue',
+      }),
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
     this.setState({
       showLoading: !showLoading,
@@ -155,12 +171,12 @@ export default class Login extends Component {
               <View style={styles.footerView}>
                 {/*<Text style={{ color: 'grey' }}>New here?</Text>*/}
                 {/*<Button*/}
-                  {/*title="Create an Account"*/}
-                  {/*clear*/}
-                  {/*activeOpacity={0.5}*/}
-                  {/*titleStyle={{ color: 'white', fontSize: 15 }}*/}
-                  {/*containerStyle={{ marginTop: -10 }}*/}
-                  {/*onPress={() => console.log('Account created')}*/}
+                {/*title="Create an Account"*/}
+                {/*clear*/}
+                {/*activeOpacity={0.5}*/}
+                {/*titleStyle={{ color: 'white', fontSize: 15 }}*/}
+                {/*containerStyle={{ marginTop: -10 }}*/}
+                {/*onPress={() => console.log('Account created')}*/}
                 {/*/>*/}
               </View>
             </View>
