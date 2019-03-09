@@ -18,6 +18,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export default class ListsScreen1 extends React.Component {
+
+  static navigationOptions = {
+    drawerLabel: () => null
+}
+
   constructor(props) {
     super(props);
 

@@ -16,6 +16,11 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 
 export default class MyCamera extends React.Component {
+
+  static navigationOptions = {
+    drawerLabel: () => null
+}
+
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
