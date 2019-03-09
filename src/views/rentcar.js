@@ -21,10 +21,12 @@ export default class ListsScreen1 extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log("Hellloooooo");
+    console.log(props);
+
     this.state = {
       fontLoaded: false,
-      cars: [],
-      test: "hallo",
+      car: {},
       chosenDate: new Date()
     };
 
@@ -44,105 +46,6 @@ export default class ListsScreen1 extends React.Component {
     });
 
     this.setState({ fontLoaded: true });
-  }
-
-  renderCard(car, index) {
-    const { id, image, name, rented } = car;
-
-    return (
-      <View
-        key={index}
-        style={rented ? {
-          height: 95,
-          marginHorizontal: 10,
-          marginTop: 10,
-          backgroundColor: 'white',
-          borderRadius: 5,
-          alignItems: 'center',
-          flexDirection: 'row',
-          opacity: 0.3,
-        } : {
-          height: 95,
-          marginHorizontal: 10,
-          marginTop: 10,
-          backgroundColor: 'white',
-          borderRadius: 5,
-          alignItems: 'center',
-          flexDirection: 'row',
-          opacity: 1,
-        }}
-      >
-        <View style={{ flex: 2, flexDirection: 'row', alignItems: 'center' }}>
-          <View style={{ marginLeft: 15, backgroundColor: 'white' }}>
-            <Avatar
-              width={75}
-              height={75}
-              avatarStyle={{ borderRadius: 75/2, backgroundColor: 'white' }}
-              overlayContainerStyle={{ backgroundColor: 'transparent' }}
-              source={{
-                uri: image,
-              }}
-              activeOpacity={0.7}
-            />
-          </View>
-          <Text
-            style={{
-              fontFamily: 'regular',
-              fontSize: 15,
-              marginLeft: 10,
-              color: 'gray',
-            }}
-          >
-            {name}
-          </Text>
-        </View>
-        <View style={{ flex: 1, alignItems: 'center' }}>
-          {rented ? (
-              <Text
-                style={{
-                  fontFamily: 'regular',
-                  fontSize: 15,
-                  marginLeft: 10,
-                  color: 'gray',
-                }}
-              >
-                not available
-              </Text>
-            ) : (
-            <Button
-              title="Rent Car"
-              buttonStyle={{
-                height: 33,
-                width: 120,
-                backgroundColor: 'rgba(222, 223, 226, 1)',
-                borderRadius: 5,
-              }}
-              titleStyle={{
-                fontFamily: 'regular',
-                fontSize: 13,
-                color: 'gray',
-              }}
-              onPress={() => this.props.navigation('Rentcar', {id: id, image: image, name: name })}  //this.rentCar(index, id)}
-              underlayColor="transparent"
-            />
-            //            const { navigate } = this.props.navigation;
-          )}
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            marginRight: 10,
-          }}
-        >
-        </View>
-      </View>
-    );
-  }
-
-  rentCar(index, id) {
-    console.log("wanna rent car number "+ id);
-    this.setState({ test: "lol" });
   }
 
   renderListCards() {
@@ -192,53 +95,6 @@ export default class ListsScreen1 extends React.Component {
                   marginBottom: 10,
                 }}
               >
-                <View style={{ flex: 3, flexDirection: 'row' }}>
-                  <View
-                    style={{
-                      flex: 1,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Avatar
-                      width={145}
-                      height={145}
-                      source={{
-                        uri:
-                          'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg',
-                      }}
-                      activeOpacity={0.7}
-                      avatarStyle={{ borderRadius: 145 / 2 }}
-                      overlayContainerStyle={{ backgroundColor: 'transparent' }}
-                    />
-                  </View>
-                  <View
-                    style={{
-                      flex: 1,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <View
-                      style={{
-                        flex: 1,
-                        marginTop: 10,
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontFamily: 'bold',
-                          fontSize: 25,
-                          color: 'rgba(98,93,144,1)',
-                          marginLeft: -15,
-                        }}
-                      >
-                        Paul Allen
-                      </Text>
-                    </View>
-                  </View>
-                </View>
                 <View
                   style={{
                     width: 300,

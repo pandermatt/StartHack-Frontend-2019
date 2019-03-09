@@ -9,6 +9,7 @@ import Pricing from './src/drawer/pricing';
 import Login from './src/drawer/login';
 import Profile from './src/drawer/profile';
 import Lists from './src/drawer/lists';
+import Rentcar from './src/views/rentcar';
 import Settings from './src/drawer/settings';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
