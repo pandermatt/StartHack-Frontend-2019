@@ -28,6 +28,7 @@ export default class Score extends React.Component {
 
     this.state = {
       fontLoaded: false,
+      score: 0,
     };
   }
 
@@ -43,16 +44,19 @@ export default class Score extends React.Component {
   }
 
   getScore() {
-    return 34;
+    let tmp = this;
+    this.getStats().then(function(statsFormApi) {
+      tmp.setState({score: 10 * (statsFormApi['clean'] + statsFormApi['fueled'])});
+    });
+    return this.state.score;
   }
 
   getStats() {
-    console.log('get stats');
-    fetch('http://130.82.236.131:8000/reduction/', {
-      method: 'GET',
-    }).then((response) => response.json())
+    return fetch('http://130.82.239.40:8000/reduction')
+    //fetch('http://130.82.236.131:8000/reduction')
+    .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
+        return responseJson
       })
       .catch((error) => {
         console.error(error);
@@ -95,6 +99,39 @@ export default class Score extends React.Component {
                 }}>
               <Text style={styles.points}>{this.getScore()}</Text>
               <Text style={styles.pointsBottom}>Points earned</Text>
+              </View>
+
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'column',
+                  borderRadius: 5,
+                  alignItems: 'center',
+                  marginHorizontal: 10,
+                  height: 100,
+                  marginTop: 30,
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                }}>
+                <Button
+                  title="continue"
+                  buttonStyle={{
+                    height: 50,
+                    width: 300,
+                    backgroundColor: 'rgba(0, 100, 0, 1)',
+                    borderRadius: 5,
+                    justifyContent: 'center',
+                    alignContent: 'center',
+                    alignItems: 'center',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'regular',
+                    fontSize: 20,
+                    color: 'white',
+                  }}
+                  onPress={() => this.nextStep()}
+                  underlayColor="transparent"
+                />
               </View>
             </ScrollView>
           </SafeAreaView>

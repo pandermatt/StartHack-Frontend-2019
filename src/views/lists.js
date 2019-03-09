@@ -149,7 +149,8 @@ export default class Lists extends React.Component {
   }
 
   fetchCars() {
-    return fetch('http://130.82.236.131:8000/cars')
+    return fetch('http://130.82.239.40:8000/cars')
+//    return fetch('http://130.82.236.131:8000/cars')
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson;

@@ -44,7 +44,8 @@ export default class Driving extends React.Component {
 
   fuelCar() {
     console.log('fuel car');
-    fetch('http://130.82.236.131:8000/reduction/', {
+    fetch('http://130.82.239.40:8000/reduction', {
+    //fetch('http://130.82.236.131:8000/reduction', {
       method: 'POST',
       body: JSON.stringify({
         clean: 0,
@@ -52,6 +53,7 @@ export default class Driving extends React.Component {
       }),
     }).then((response) => {
       console.log('fueling done');
+      console.log(response);
     })
       .catch((error) => {
         console.error(error);
@@ -60,7 +62,8 @@ export default class Driving extends React.Component {
 
   cleanCar() {
     console.log('clean car');
-    fetch('http://130.82.236.131:8000/reduction/', {
+    fetch('http://130.82.239.40:8000/reduction', {
+    //fetch('http://130.82.236.131:8000/reduction', {
       method: 'POST',
       body: JSON.stringify({
         clean: 1,
@@ -68,6 +71,7 @@ export default class Driving extends React.Component {
       }),
     }).then((response) => {
       console.log('cleaning done');
+      console.log(response);
     })
       .catch((error) => {
         console.error(error);
@@ -75,7 +79,6 @@ export default class Driving extends React.Component {
   }
 
   returnCar() {
-    console.log("show me ma score");
     this.props.navigation.navigate('Score');
   }
 
