@@ -13,7 +13,8 @@ import {
 import { Avatar, Button } from 'react-native-elements';
 
 import { Font } from 'expo';
-import Icon from 'react-native-vector-icons/Ionicons';
+
+import settings from '../config/settings';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -46,17 +47,16 @@ export default class Score extends React.Component {
   getScore() {
     let tmp = this;
     this.getStats().then(function(statsFormApi) {
-      tmp.setState({score: 10 * (statsFormApi['clean'] + statsFormApi['fueled'])});
+      tmp.setState({ score: 10 * (statsFormApi['clean'] + statsFormApi['fueled']) });
     });
     return this.state.score;
   }
 
   getStats() {
-    return fetch('http://130.82.239.40:8000/reduction')
-    //fetch('http://130.82.236.131:8000/reduction')
-    .then((response) => response.json())
+    return fetch(settings.apiEndpoint + '/reduction')
+      .then((response) => response.json())
       .then((responseJson) => {
-        return responseJson
+        return responseJson;
       })
       .catch((error) => {
         console.error(error);
@@ -97,8 +97,8 @@ export default class Score extends React.Component {
                   alignContent: 'center',
                   backgroundColor: 'white',
                 }}>
-              <Text style={styles.points}>{this.getScore()}</Text>
-              <Text style={styles.pointsBottom}>Points earned</Text>
+                <Text style={styles.points}>{this.getScore()}</Text>
+                <Text style={styles.pointsBottom}>Points earned</Text>
               </View>
 
               <View

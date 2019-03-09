@@ -13,7 +13,7 @@ import {
 import { Avatar, Button } from 'react-native-elements';
 
 import { Font } from 'expo';
-import Icon from 'react-native-vector-icons/Ionicons';
+import settings from '../config/settings';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -55,8 +55,7 @@ export default class Rentcar extends React.Component {
   }
 
   rentCar() {
-    fetch('http://130.82.239.40:8000/rent/' + this.state.car.id, {
-    //fetch('http://130.82.236.131:8000/rent/' + this.state.car.id, {
+    fetch(settings.apiEndpoint + '/rent/' + this.state.car.id, {
       method: 'POST',
     }).then((response) => {
       this.props.navigation.navigate('Driving', {

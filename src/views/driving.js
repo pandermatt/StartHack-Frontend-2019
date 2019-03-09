@@ -13,7 +13,7 @@ import {
 import { Avatar, Button } from 'react-native-elements';
 
 import { Font } from 'expo';
-import Icon from 'react-native-vector-icons/Ionicons';
+import settings from '../config/settings';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -44,8 +44,7 @@ export default class Driving extends React.Component {
 
   fuelCar() {
     console.log('fuel car');
-    fetch('http://130.82.239.40:8000/reduction', {
-    //fetch('http://130.82.236.131:8000/reduction', {
+    fetch(settings.apiEndpoint + '/reduction', {
       method: 'POST',
       body: JSON.stringify({
         clean: 0,
@@ -62,8 +61,7 @@ export default class Driving extends React.Component {
 
   cleanCar() {
     console.log('clean car');
-    fetch('http://130.82.239.40:8000/reduction', {
-    //fetch('http://130.82.236.131:8000/reduction', {
+    fetch(settings.apiEndpoint + '/reduction', {
       method: 'POST',
       body: JSON.stringify({
         clean: 1,
@@ -162,25 +160,25 @@ export default class Driving extends React.Component {
                   justifyContent: 'center',
                   alignContent: 'center',
                 }}>
-              <Button
-                title="End Rental Period"
-                buttonStyle={{
-                  height: 50,
-                  width: 300,
-                  backgroundColor: 'rgba(0, 100, 0, 1)',
-                  borderRadius: 5,
-                  justifyContent: 'center',
-                  alignContent: 'center',
-                  alignItems: 'center',
-                }}
-                titleStyle={{
-                  fontFamily: 'regular',
-                  fontSize: 20,
-                  color: 'white',
-                }}
-                onPress={() => this.returnCar()}
-                underlayColor="transparent"
-              />
+                <Button
+                  title="End Rental Period"
+                  buttonStyle={{
+                    height: 50,
+                    width: 300,
+                    backgroundColor: 'rgba(0, 100, 0, 1)',
+                    borderRadius: 5,
+                    justifyContent: 'center',
+                    alignContent: 'center',
+                    alignItems: 'center',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'regular',
+                    fontSize: 20,
+                    color: 'white',
+                  }}
+                  onPress={() => this.returnCar()}
+                  underlayColor="transparent"
+                />
               </View>
             </ScrollView>
           </SafeAreaView>

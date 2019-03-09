@@ -7,6 +7,8 @@ import {
   Dimensions,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import settings from '../config/settings';
+
 
 import { Input, Button } from 'react-native-elements';
 
@@ -52,8 +54,7 @@ export default class Login extends Component {
   submitLoginCredentials() {
     const { showLoading } = this.state;
 
-    fetch('http://130.82.239.40:8000/login', {
-    //fetch('http://130.82.236.131:8000/login', {
+    fetch(settings.apiEndpoint + '/login', {
       method: 'POST',
       body: JSON.stringify({
         pw: this.state.password,
@@ -61,10 +62,10 @@ export default class Login extends Component {
       }),
     }).then((response) => response.json())
       .then((responseJson) => {
-        if (responseJson["login"]) {
+        if (responseJson['login']) {
           this.props.navigation.navigate('MyCamera');
         } else {
-          this.setState({login_failed: true, showLoading: false});
+          this.setState({ login_failed: true, showLoading: false });
         }
       })
       .catch((error) => {

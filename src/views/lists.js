@@ -10,6 +10,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { Avatar, Button } from 'react-native-elements';
+import settings from '../config/settings';
+
 
 import { Font } from 'expo';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -149,8 +151,7 @@ export default class Lists extends React.Component {
   }
 
   fetchCars() {
-    return fetch('http://130.82.239.40:8000/cars')
-//    return fetch('http://130.82.236.131:8000/cars')
+    return fetch(settings.apiEndpoint + '/cars')
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson;

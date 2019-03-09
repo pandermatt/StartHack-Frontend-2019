@@ -3,6 +3,8 @@ import { Text, View, Dimensions, StyleSheet, SafeAreaView, ScrollView } from 're
 import colors from '../config/colors';
 import { Font } from 'expo';
 
+import settings from '../config/settings';
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 
@@ -34,8 +36,7 @@ export default class Pricing extends React.Component {
   }
 
   async addSubscription(title) {
-    fetch('http://130.82.239.40:8000/subscription', {
-    //fetch('http://130.82.236.131:8000/subscription', {
+    fetch(settings.apiEndpoint + '/subscription', {
       method: 'POST',
       body: JSON.stringify({
         subscription: title,
