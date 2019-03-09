@@ -10,9 +10,9 @@ import {
   SafeAreaView,
   DatePickerIOS,
 } from 'react-native';
-import { Avatar, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
-import { Font } from 'expo';
+import { Font, LocalAuthentication } from 'expo';
 import settings from '../config/settings';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -161,11 +161,43 @@ export default class Driving extends React.Component {
                   alignContent: 'center',
                 }}>
                 <Button
-                  title="End Rental Period"
+                  title="Unlock Car"
                   buttonStyle={{
                     height: 50,
                     width: 300,
                     backgroundColor: 'rgba(0, 100, 0, 1)',
+                    borderRadius: 5,
+                    justifyContent: 'center',
+                    alignContent: 'center',
+                    alignItems: 'center',
+                  }}
+                  titleStyle={{
+                    fontFamily: 'regular',
+                    fontSize: 20,
+                    color: 'white',
+                  }}
+                  onPress={() => LocalAuthentication.authenticateAsync()}
+                  underlayColor="transparent"
+                />
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'column',
+                  borderRadius: 5,
+                  alignItems: 'center',
+                  marginHorizontal: 10,
+                  height: 100,
+                  marginTop: 30,
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                }}>
+                <Button
+                  title="End Rental Period"
+                  buttonStyle={{
+                    height: 50,
+                    width: 300,
+                    backgroundColor: 'rgb(178,34,34)',
                     borderRadius: 5,
                     justifyContent: 'center',
                     alignContent: 'center',
