@@ -47,7 +47,7 @@ Pricing.navigationOptions = {
 };
 
 function addSubscription(title) {
-  fetch('http://130.82.237.49:8000/subscription', {
+  fetch('http://130.82.236.131:8000/subscription', {
       method: 'POST',
       body: JSON.stringify({
         subscription: title,

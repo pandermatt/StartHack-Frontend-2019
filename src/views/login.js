@@ -52,7 +52,7 @@ export default class Login extends Component {
   submitLoginCredentials() {
     const { showLoading } = this.state;
 
-    fetch('http://130.82.237.49:8000/login', {
+    fetch('http://130.82.236.131:8000/login', {
       method: 'POST',
       body: JSON.stringify({
         pw: this.state.password,
