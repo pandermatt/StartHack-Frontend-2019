@@ -17,7 +17,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-export default class ListsScreen1 extends React.Component {
+export default class Rentcar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -34,7 +34,7 @@ export default class ListsScreen1 extends React.Component {
   }
 
   setDate(newDate) {
-    this.setState({chosenDate: newDate})
+    //this.setState({chosenDate: newDate})
   }
 
   async componentDidMount() {
@@ -48,29 +48,6 @@ export default class ListsScreen1 extends React.Component {
     this.setState({ fontLoaded: true });
   }
 
-  renderListCards() {
-    let tmp = this;
-    this.fetchCars().then(function(carsFromApi){
-      tmp.setState({cars: carsFromApi})})
-      .catch((error) => {
-        console.log(error);
-      })
-    return _.map(this.state.cars, (car, index) => {
-      return this.renderCard(car, index);
-    });
-  }
-
-  fetchCars() {
-    return fetch('http://130.82.236.131:8000/cars')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -80,75 +57,14 @@ export default class ListsScreen1 extends React.Component {
           >
             <View style={styles.statusBar}/>
             <View style={styles.navBar}>
-              <Text style={styles.nameHeader}>Growing</Text>
+              <Text style={styles.nameHeader}>Rental Duration</Text>
             </View>
             <ScrollView style={{ flex: 1, marginBottom: 20 }}>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: 'column',
-                  backgroundColor: 'white',
-                  borderRadius: 5,
-                  alignItems: 'center',
-                  marginHorizontal: 10,
-                  height: 250,
-                  marginBottom: 10,
-                }}
-              >
-                <View
-                  style={{
-                    width: 300,
-                    borderWidth: 0.5,
-                    borderColor: 'rgba(222, 223, 226, 1)',
-                    marginHorizontal: 20,
-                    height: 1,
-                    marginVertical: 10,
-                  }}
+              <View>
+                <DatePickerIOS
+                  date={this.state.chosenDate}
+                  onDateChange={this.setDate}
                 />
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}
-                >
-                  <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Button
-                      title="View Profile"
-                      buttonStyle={{
-                        height: 33,
-                        width: 120,
-                        backgroundColor: 'rgba(222, 223, 226, 1)',
-                        borderRadius: 5,
-                      }}
-                      titleStyle={{
-                        fontFamily: 'regular',
-                        fontSize: 13,
-                        color: 'gray',
-                      }}
-                      onPress={() => console.log('aye')}
-                      underlayColor="transparent"
-                    />
-                  </View>
-                  <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Button
-                      title={this.state.test}
-                      buttonStyle={{
-                        height: 33,
-                        width: 120,
-                        backgroundColor: 'rgba(113, 154, 112, 1)',
-                        borderRadius: 5,
-                      }}
-                      titleStyle={{
-                        fontFamily: 'regular',
-                        fontSize: 13,
-                        color: 'white',
-                      }}
-                      onPress={() => console.log('aye')}
-                      underlayColor="transparent"
-                    />
-                  </View>
-                </View>
               </View>
               <View>
                 <DatePickerIOS
@@ -156,7 +72,6 @@ export default class ListsScreen1 extends React.Component {
                   onDateChange={this.setDate}
                 />
               </View>
-              {this.renderListCards()}
             </ScrollView>
           </SafeAreaView>
         ) : (
