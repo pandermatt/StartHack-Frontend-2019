@@ -17,22 +17,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-export default class ListsScreen1 extends React.Component {
+export default class Lists extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       fontLoaded: false,
       cars: [],
-      test: "hallo",
-      chosenDate: new Date()
+      test: "hallo"
     };
-
-    this.setDate = this.setDate.bind(this);
-  }
-
-  setDate(newDate) {
-    this.setState({chosenDate: newDate})
   }
 
   async componentDidMount() {
@@ -293,12 +286,6 @@ export default class ListsScreen1 extends React.Component {
                     />
                   </View>
                 </View>
-              </View>
-              <View>
-                <DatePickerIOS
-                  date={this.state.chosenDate}
-                  onDateChange={this.setDate}
-                />
               </View>
               {this.renderListCards()}
             </ScrollView>
