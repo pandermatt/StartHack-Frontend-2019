@@ -16,57 +16,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const CAR1 = require('../../../assets/images/cars/1.png');
-
-const CARS = [];
-let LOADED = false;
-/*
-[
-{
-  name: 'Car 1',
-  avatar: 'https://www.telegraph.co.uk/cars/images/2017/02/15/Volvo-S90-main_trans_NvBQzQNjv4BqLXKfuYoUkiu2TOJRKe-bQKhpKWSvo7bYwCFSVLx1AKs.jpg',
-  value: '- 164',
-},
-{
-  name: 'Sarah Parker',
-  avatar: '../../../assets/images/cars/1.png',
-  value: '+ 203',
-  positive: true,
-},
-{
-  name: 'Paul Allen',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg',
-  value: '+ 464',
-  positive: true,
-},
-{
-  name: 'Terry Andrews',
-  avatar:
-    'https://s3.amazonaws.com/uifaces/faces/twitter/talhaconcepts/128.jpg',
-  value: '- 80',
-  positive: false,
-},
-{
-  name: 'Andy Vitale',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/andyvitale/128.jpg',
-  value: '- 230',
-  positive: false,
-},
-{
-  name: 'Katy Friedson',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg',
-  value: '+ 160',
-  positive: true,
-},
-];
-*/
-export default class ListsScreen1 extends Component {
+export default class ListsScreen1 extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       fontLoaded: false,
-      cars: []
+      cars: [],
+      test: "hallo"
     };
   }
 
@@ -81,67 +38,6 @@ export default class ListsScreen1 extends Component {
     this.setState({ fontLoaded: true });
   }
 
-  /*
-    renderValue(user) {
-      const { value, positive } = user;
-
-      if (positive) {
-        return (
-          <View
-            style={{
-              backgroundColor: 'rgba(220,230,218,1)',
-              width: 70,
-              height: 28,
-              borderRadius: 5,
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'row',
-              marginLeft: 10,
-            }}
-          >
-            <Icon name="md-arrow-dropup" color="green" size={25}/>
-            <Text
-              style={{
-                color: 'green',
-                fontFamily: 'regular',
-                fontSize: 13,
-                marginLeft: 5,
-              }}
-            >
-              {value}
-            </Text>
-          </View>
-        );
-      } else {
-        return (
-          <View
-            style={{
-              backgroundColor: 'rgba(244,230,224,1)',
-              width: 70,
-              height: 28,
-              borderRadius: 5,
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'row',
-              marginLeft: 10,
-            }}
-          >
-            <Icon name="md-arrow-dropdown" color="red" size={25}/>
-            <Text
-              style={{
-                color: 'red',
-                fontFamily: 'regular',
-                fontSize: 13,
-                marginLeft: 5,
-              }}
-            >
-              {value}
-            </Text>
-          </View>
-        );
-      }
-    }
-  */
   renderCard(car, index) {
     const { rented, name, duration, image } = car;
 
@@ -180,6 +76,24 @@ export default class ListsScreen1 extends Component {
             {name}
           </Text>
         </View>
+        <View style={{ flex: 1, alignItems: 'center' }}>
+          <Button
+            title="Rent Car"
+            buttonStyle={{
+              height: 33,
+              width: 120,
+              backgroundColor: 'rgba(222, 223, 226, 1)',
+              borderRadius: 5,
+            }}
+            titleStyle={{
+              fontFamily: 'regular',
+              fontSize: 13,
+              color: 'gray',
+            }}
+            onPress={() => this.rentCar(index)}
+            underlayColor="transparent"
+          />
+        </View>
         <View
           style={{
             flexDirection: 'row',
@@ -205,24 +119,24 @@ export default class ListsScreen1 extends Component {
     );
   }
 
-  /*{this.renderValue(user)}*/
+  rentCar(id) {
+    console.log("wanna rent "+ id);
+    this.setState({ test: "lol" });
+  }
 
-  /*
-        */
-
-  async renderListCards() {
+  renderListCards() {
     let tmp = this;
     this.fetchCars().then(function(carsFromApi){
       tmp.setState({cars: carsFromApi})})
       .catch((error) => {
         console.log(error);
       })
-    return _.map(CARS, (car, index) => {
+    return _.map(this.state.cars, (car, index) => {
       return this.renderCard(car, index);
     });
   }
 
-  async fetchCars() {
+  fetchCars() {
     return fetch('http://130.82.236.131:8000/cars')
       .then((response) => response.json())
       .then((responseJson) => {
@@ -231,30 +145,7 @@ export default class ListsScreen1 extends Component {
       .catch((error) => {
         console.error(error);
       });
-    /*
-    fetch('localhost:8000/cars', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-      */
   }
-
-  /*shouldComponentUpdate() {
-    if (this.state.cars.length == 0 || !LOADED) {
-      LOADED = false;
-      return true;
-    }
-    return false;
-  }*/
 
   render() {
     return (
@@ -364,7 +255,7 @@ export default class ListsScreen1 extends Component {
                   </View>
                   <View style={{ flex: 1, alignItems: 'center' }}>
                     <Button
-                      title="Add User"
+                      title={this.state.test}
                       buttonStyle={{
                         height: 33,
                         width: 120,
