@@ -8,7 +8,6 @@ import {
   Dimensions,
   ScrollView,
   SafeAreaView,
-  DatePickerIOS,
 } from 'react-native';
 import { Avatar, Button } from 'react-native-elements';
 
@@ -118,7 +117,6 @@ export default class Lists extends React.Component {
               onPress={() => this.props.navigation.navigate('Rentcar', {id: id, image: image, name: name })}  //this.rentCar(index, id)}
               underlayColor="transparent"
             />
-            //            const { navigate } = this.props.navigation;
           )}
         </View>
         <View
