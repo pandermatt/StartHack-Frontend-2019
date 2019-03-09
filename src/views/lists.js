@@ -197,7 +197,7 @@ export default class Lists extends React.Component {
                       height={145}
                       source={{
                         uri:
-                          'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg',
+                          'https://d23wxovozhm1zu.cloudfront.net/uploads/team_members/photos_portrait/28/preview/pascal-andermatt.jpg',
                       }}
                       activeOpacity={0.7}
                       avatarStyle={{ borderRadius: 145 / 2 }}
@@ -226,7 +226,7 @@ export default class Lists extends React.Component {
                           marginLeft: -15,
                         }}
                       >
-                        Paul Allen
+                        Pascal Andermatt
                       </Text>
                     </View>
                   </View>
