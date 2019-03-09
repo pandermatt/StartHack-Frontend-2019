@@ -137,7 +137,7 @@ export default class ListsScreen1 extends React.Component {
   }
 
   fetchCars() {
-    return fetch('http://130.82.236.131:8000/cars')
+    return fetch('http://130.82.237.49:8000/cars')
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson;

@@ -54,11 +54,11 @@ export default class Login extends Component {
 
     console.log(this.state);
 
-    fetch('http://130.82.10.126:8000/login', {
+    fetch('http://130.82.237.49:8000/login', {
       method: 'POST',
       body: JSON.stringify({
-        pw: 'yourValue',
-        name: 'yourOtherValue',
+        pw: this.state.password,
+        name: this.state.email,
       }),
     }).then((response) => response.json())
       .then((responseJson) => {
