@@ -52,8 +52,6 @@ export default class Login extends Component {
   submitLoginCredentials() {
     const { showLoading } = this.state;
 
-    //console.log(this.state);
-
     fetch('http://130.82.237.49:8000/login', {
       method: 'POST',
       body: JSON.stringify({
@@ -63,14 +61,12 @@ export default class Login extends Component {
     }).then((response) => response.json())
       .then((responseJson) => {
         if (responseJson["login"]) {
-          const { navigate } = this.props.navigation;
-          navigate('Lists');
+          this.props.navigation.navigate('MyCamera');
         } else {
           this.setState({login_failed: true, showLoading: false});
         }
       })
       .catch((error) => {
-        console.log('hihi');
         console.error(error);
       });
 
