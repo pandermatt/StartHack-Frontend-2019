@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Image, Dimensions, StyleSheet, SafeAreaView } from 'react-native';
+import { Text, View, Image, Dimensions, StyleSheet, SafeAreaView } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import { Font } from 'expo';
@@ -21,7 +21,7 @@ export default class ImageView extends React.Component {
 
   async nav() {
     console.log('navigate to...');
-    this.props.navigation.navigate('Pricing');
+    this.props.navigation.navigate('Upload');
   }
 
   async componentDidMount() {

@@ -8,6 +8,7 @@ import Pricing from './src/drawer/pricing';
 import Login from './src/drawer/login';
 import Lists from './src/drawer/lists';
 import Rentcar from './src/views/rentcar';
+import Upload from './src/views/upload';
 import Driving from './src/views/driving';
 import Score from './src/views/score';
 import MyCamera from './src/views/camera';
@@ -65,6 +66,10 @@ const MainRoot = DrawerNavigator(
     ImageView: {
       path: '/imageview',
       screen: ImageView,
+    },
+    Upload: {
+      path: '/upload',
+      screen: Upload,
     },
   },
   {
