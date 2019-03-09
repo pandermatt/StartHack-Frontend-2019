@@ -14,10 +14,10 @@ const ListsDrawerItem = StackNavigator(
 );
 
 ListsDrawerItem.navigationOptions = {
-  drawerLabel: 'Lists',
+  drawerLabel: 'Rent a Car',
   drawerIcon: ({ tintColor }) => (
     <Icon
-      name="list"
+      name="time-to-leave"
       size={30}
       iconStyle={{
         width: 30,

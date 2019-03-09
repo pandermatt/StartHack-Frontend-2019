@@ -3,24 +3,16 @@ import { StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import Pricing from '../views/pricing';
+import Login from '../views/login';
 
-const PricingDrawerItem = StackNavigator({
-  Pricing: {
-    screen: Pricing,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Pricing',
-      headerLeft: (
-        <Icon
-          name="menu"
-          size={30}
-          type="entypo"
-          iconStyle={{ paddingLeft: 10 }}
-          onPress={() => navigation.navigate('DrawerOpen')}
-        />
-      ),
-    }),
+const PricingDrawerItem = StackNavigator(
+  {
+    Playground: { screen: Pricing },
   },
-});
+  {
+    headerMode: 'none',
+  }
+);
 
 PricingDrawerItem.navigationOptions = {
   drawerLabel: 'Pricing',

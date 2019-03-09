@@ -1,53 +1,40 @@
-import React, { Component } from 'react';
-import { ScrollView, View, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import { Text, View, Dimensions, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import colors from '../config/colors';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Font } from 'expo';
 
-import { PricingCard, Text } from 'react-native-elements';
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
-class Pricing extends Component {
-  render() {
-    return (
-      <ScrollView style={{ backgroundColor: 'white' }}>
-        <View style={styles.hero}>
-          <Icon color="white" name="games" size={62} />
-          <Text style={styles.heading}>Pricing</Text>
-        </View>
-        <PricingCard
-          color={colors.primary}
-          title="Starter"
-          price="$500"
-          info={['10 days / month', 'withouth fuel']}
-          button={{ title: 'GET STARTED', icon: 'flight-takeoff' }}
-          onButtonPress={() => addSubscription("subs1")}
-        />
-        <PricingCard
-          color={colors.secondary}
-          title="Basic"
-          price="$800"
-          info={['20 days / month', 'withouth fuel']}
-          button={{ title: 'GET STARTED', icon: 'flight-takeoff' }}
-          onButtonPress={() => addSubscription("subs2")}
-        />
-        <PricingCard
-          color={colors.secondary2}
-          title="Umlimited"
-          price="$1000"
-          info={['unlimited days / month', 'withouth fuel']}
-          button={{ title: 'GET STARTED', icon: 'flight-takeoff' }}
-          onButtonPress={() => addSubscription("subs3")}
-        />
-      </ScrollView>
-    );
+
+import { PricingCard } from 'react-native-elements';
+
+export default class Pricing extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fontLoaded: false,
+    };
   }
-}
 
-Pricing.navigationOptions = {
-  title: 'Pricing',
-};
+  static navigationOptions = {
+    drawerLabel: () => null,
+  };
 
-function addSubscription(title) {
-  fetch('http://130.82.237.49:8000/subscription', {
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      georgia: require('../../assets/fonts/Georgia.ttf'),
+      regular: require('../../assets/fonts/Montserrat-Regular.ttf'),
+      light: require('../../assets/fonts/Montserrat-Light.ttf'),
+      bold: require('../../assets/fonts/Montserrat-Bold.ttf'),
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
+  async addSubscription(title) {
+    fetch('http://130.82.239.40:8000/subscription', {
       method: 'POST',
       body: JSON.stringify({
         subscription: title,
@@ -59,39 +46,73 @@ function addSubscription(title) {
       .catch((error) => {
         console.error(error);
       });
-};
+    this.props.navigation.navigate('Lists');
+  }
+
+
+  render() {
+    return (
+      <View style={styles.container}>
+        {this.state.fontLoaded ? (
+          <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(241,240,241,1)' }}>
+            <ScrollView>
+              <View style={styles.statusBar}/>
+              <View style={styles.navBar}>
+                <Text style={styles.nameHeader}>Pricing</Text>
+              </View>
+              <PricingCard
+                color={colors.primary}
+                title="Starter"
+                price="$500"
+                info={['10 days / month', 'withouth fuel']}
+                button={{ title: 'GET STARTED', icon: 'ev-station' }}
+                onButtonPress={() => this.addSubscription('subs1')}
+              />
+              <PricingCard
+                color={colors.secondary2}
+                title="Basic"
+                price="$800"
+                info={['20 days / month', 'withouth fuel']}
+                button={{ title: 'GET STARTED', icon: 'ev-station' }}
+                onButtonPress={() => this.addSubscription('subs2')}
+              />
+              <PricingCard
+                color={colors.secondary3}
+                title="Umlimited"
+                price="$1000"
+                info={['unlimited days / month', 'withouth fuel']}
+                button={{ title: 'GET STARTED', icon: 'ev-station' }}
+                onButtonPress={() => this.addSubscription('subs3')}
+              />
+            </ScrollView>
+          </SafeAreaView>
+        ) : (
+          <Text>Loading...</Text>
+        )}
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  hero: {
+  statusBar: {
+    height: 10,
+  },
+  navBar: {
+    height: 60,
+    width: SCREEN_WIDTH,
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: 40,
-    backgroundColor: colors.primary2,
+    alignContent: 'center',
   },
-  heading: {
-    color: 'white',
-    marginTop: 10,
-    fontSize: 22,
-  },
-  titleText: {
+  nameHeader: {
+    color: 'black',
     fontSize: 25,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    paddingVertical: 5,
-    fontFamily: Platform.OS === 'ios' ? 'Menlo-Bold' : null,
-    color: '#27ae60',
+    fontFamily: 'regular',
+    marginLeft: 20,
   },
-  subtitleText: {
-    fontSize: 18,
-    fontWeight: '400',
-    textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Trebuchet MS' : null,
-    color: '#34495e',
-  },
-  viewContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
   },
 });
 
-export default Pricing;

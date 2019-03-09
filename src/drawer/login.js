@@ -14,10 +14,10 @@ const LoginDrawerItem = StackNavigator(
 );
 
 LoginDrawerItem.navigationOptions = {
-  drawerLabel: 'Login',
+  drawerLabel: 'Log out',
   drawerIcon: ({ tintColor }) => (
     <Icon
-      name="email"
+      name="lock"
       size={30}
       iconStyle={{
         width: 30,

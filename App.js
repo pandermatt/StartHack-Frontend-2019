@@ -58,7 +58,7 @@ const MainRoot = DrawerNavigator(
     },
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Pricing',
     contentOptions: {
       activeTintColor: '#548ff7',
       activeBackgroundColor: 'transparent',

@@ -151,7 +151,7 @@ export default class Lists extends React.Component {
   }
 
   fetchCars() {
-    return fetch('http://130.82.237.49:8000/cars')
+    return fetch('http://130.82.239.40:8000/cars')
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson;
@@ -170,7 +170,7 @@ export default class Lists extends React.Component {
           >
             <View style={styles.statusBar}/>
             <View style={styles.navBar}>
-              <Text style={styles.nameHeader}>Growing</Text>
+              <Text style={styles.nameHeader}>Rent a Car</Text>
             </View>
             <ScrollView style={{ flex: 1, marginBottom: 20 }}>
               <View
