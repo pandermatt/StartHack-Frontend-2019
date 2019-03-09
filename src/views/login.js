@@ -52,19 +52,25 @@ export default class Login extends Component {
   submitLoginCredentials() {
     const { showLoading } = this.state;
 
-    console.log(this.state);
+    //console.log(this.state);
 
-    fetch('http://130.82.10.126:8000/login', {
+    fetch('http://130.82.236.131:8000/login', {
       method: 'POST',
       body: JSON.stringify({
-        pw: 'yourValue',
-        name: 'yourOtherValue',
+        pw: this.state.password,
+        name: this.state.email,
       }),
     }).then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
+        if (responseJson["login"]) {
+          const { navigate } = this.props.navigation;
+          navigate('Lists');
+        } else {
+          this.setState({login_failed: true, showLoading: false});
+        }
       })
       .catch((error) => {
+        console.log('hihi');
         console.error(error);
       });
 
@@ -74,7 +80,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const { email, password, email_valid, showLoading } = this.state;
+    const { email, password, email_valid, login_failed, showLoading } = this.state;
 
     return (
       <KeyboardAwareScrollView style={styles.container}
@@ -147,6 +153,9 @@ export default class Login extends Component {
                   ref={input => (this.passwordInput = input)}
                   blurOnSubmit={true}
                   placeholderTextColor="white"
+                  errorMessage={
+                    login_failed ? 'Wrong email or password' : null
+                  }
                 />
               </View>
               <Button
