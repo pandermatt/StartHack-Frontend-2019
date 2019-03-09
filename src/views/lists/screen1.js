@@ -16,51 +16,57 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const USERS = [
-  {
-    name: 'Johh Smith',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg',
-    value: '- 164',
-  },
-  {
-    name: 'Sarah Parker',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/evagiselle/128.jpg',
-    value: '+ 203',
-    positive: true,
-  },
-  {
-    name: 'Paul Allen',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg',
-    value: '+ 464',
-    positive: true,
-  },
-  {
-    name: 'Terry Andrews',
-    avatar:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/talhaconcepts/128.jpg',
-    value: '- 80',
-    positive: false,
-  },
-  {
-    name: 'Andy Vitale',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/andyvitale/128.jpg',
-    value: '- 230',
-    positive: false,
-  },
-  {
-    name: 'Katy Friedson',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg',
-    value: '+ 160',
-    positive: true,
-  },
-];
+const CAR1 = require('../../../assets/images/cars/1.png');
 
+const CARS = [];
+let LOADED = false;
+/*
+[
+{
+  name: 'Car 1',
+  avatar: 'https://www.telegraph.co.uk/cars/images/2017/02/15/Volvo-S90-main_trans_NvBQzQNjv4BqLXKfuYoUkiu2TOJRKe-bQKhpKWSvo7bYwCFSVLx1AKs.jpg',
+  value: '- 164',
+},
+{
+  name: 'Sarah Parker',
+  avatar: '../../../assets/images/cars/1.png',
+  value: '+ 203',
+  positive: true,
+},
+{
+  name: 'Paul Allen',
+  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg',
+  value: '+ 464',
+  positive: true,
+},
+{
+  name: 'Terry Andrews',
+  avatar:
+    'https://s3.amazonaws.com/uifaces/faces/twitter/talhaconcepts/128.jpg',
+  value: '- 80',
+  positive: false,
+},
+{
+  name: 'Andy Vitale',
+  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/andyvitale/128.jpg',
+  value: '- 230',
+  positive: false,
+},
+{
+  name: 'Katy Friedson',
+  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg',
+  value: '+ 160',
+  positive: true,
+},
+];
+*/
 export default class ListsScreen1 extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       fontLoaded: false,
+      cars: []
     };
   }
 
@@ -75,68 +81,69 @@ export default class ListsScreen1 extends Component {
     this.setState({ fontLoaded: true });
   }
 
-  renderValue(user) {
-    const { value, positive } = user;
+  /*
+    renderValue(user) {
+      const { value, positive } = user;
 
-    if (positive) {
-      return (
-        <View
-          style={{
-            backgroundColor: 'rgba(220,230,218,1)',
-            width: 70,
-            height: 28,
-            borderRadius: 5,
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'row',
-            marginLeft: 10,
-          }}
-        >
-          <Icon name="md-arrow-dropup" color="green" size={25} />
-          <Text
+      if (positive) {
+        return (
+          <View
             style={{
-              color: 'green',
-              fontFamily: 'regular',
-              fontSize: 13,
-              marginLeft: 5,
+              backgroundColor: 'rgba(220,230,218,1)',
+              width: 70,
+              height: 28,
+              borderRadius: 5,
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'row',
+              marginLeft: 10,
             }}
           >
-            {value}
-          </Text>
-        </View>
-      );
-    } else {
-      return (
-        <View
-          style={{
-            backgroundColor: 'rgba(244,230,224,1)',
-            width: 70,
-            height: 28,
-            borderRadius: 5,
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'row',
-            marginLeft: 10,
-          }}
-        >
-          <Icon name="md-arrow-dropdown" color="red" size={25} />
-          <Text
+            <Icon name="md-arrow-dropup" color="green" size={25}/>
+            <Text
+              style={{
+                color: 'green',
+                fontFamily: 'regular',
+                fontSize: 13,
+                marginLeft: 5,
+              }}
+            >
+              {value}
+            </Text>
+          </View>
+        );
+      } else {
+        return (
+          <View
             style={{
-              color: 'red',
-              fontFamily: 'regular',
-              fontSize: 13,
-              marginLeft: 5,
+              backgroundColor: 'rgba(244,230,224,1)',
+              width: 70,
+              height: 28,
+              borderRadius: 5,
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'row',
+              marginLeft: 10,
             }}
           >
-            {value}
-          </Text>
-        </View>
-      );
+            <Icon name="md-arrow-dropdown" color="red" size={25}/>
+            <Text
+              style={{
+                color: 'red',
+                fontFamily: 'regular',
+                fontSize: 13,
+                marginLeft: 5,
+              }}
+            >
+              {value}
+            </Text>
+          </View>
+        );
+      }
     }
-  }
-
-  renderCard(user, index) {
-    const { name, avatar } = user;
+  */
+  renderCard(car, index) {
+    const { rented, name, duration, image } = car;
 
     return (
       <View
@@ -157,7 +164,7 @@ export default class ListsScreen1 extends Component {
               small
               rounded
               source={{
-                uri: avatar,
+                uri: image,
               }}
               activeOpacity={0.7}
             />
@@ -180,7 +187,6 @@ export default class ListsScreen1 extends Component {
             marginRight: 10,
           }}
         >
-          {this.renderValue(user)}
           <View
             style={{
               backgroundColor: 'rgba(222,222,222,1)',
@@ -192,17 +198,62 @@ export default class ListsScreen1 extends Component {
               marginHorizontal: 10,
             }}
           >
-            <Icon name="md-person-add" color="gray" size={20} />
+            <Icon name="md-person-add" color="gray" size={20}/>
           </View>
         </View>
       </View>
     );
   }
 
+  /*{this.renderValue(user)}*/
+
+  /*
+        */
+
   renderListCards() {
-    return _.map(USERS, (user, index) => {
-      return this.renderCard(user, index);
+    let tmp = this;
+    this.fetchCars().then(function(carsFromApi){
+      tmp.setState({cars: carsFromApi})})
+      .catch((error) => {
+        console.log(error);
+      })
+    return _.map(CARS, (car, index) => {
+      return this.renderCard(car, index);
     });
+  }
+
+  fetchCars() {
+    return fetch('http://130.82.236.131:8000/cars')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    /*
+    fetch('localhost:8000/cars', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      */
+  }
+
+  shouldComponentUpdate() {
+    if (this.state.cars.length == 0 || !LOADED) {
+      LOADED = false;
+      return true;
+    }
+    return false;
   }
 
   render() {
@@ -212,7 +263,7 @@ export default class ListsScreen1 extends Component {
           <SafeAreaView
             style={{ flex: 1, backgroundColor: 'rgba(241,240,241,1)' }}
           >
-            <View style={styles.statusBar} />
+            <View style={styles.statusBar}/>
             <View style={styles.navBar}>
               <Text style={styles.nameHeader}>Growing</Text>
             </View>
