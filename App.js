@@ -8,6 +8,8 @@ import Pricing from './src/drawer/pricing';
 import Login from './src/drawer/login';
 import Lists from './src/drawer/lists';
 import Rentcar from './src/views/rentcar';
+import Driving from './src/views/driving';
+import Score from './src/views/score';
 import MyCamera from './src/views/camera';
 import ImageView from './src/views/imageview';
 
@@ -47,6 +49,14 @@ const MainRoot = DrawerNavigator(
     Rentcar: {
       path: '/rentcar',
       screen: Rentcar,
+    },
+    Driving: {
+      path: '/driving',
+      screen: Driving,
+    },
+    Score: {
+      path: '/score',
+      screen: Score,
     },
     MyCamera: {
       path: '/mycamera',
