@@ -59,6 +59,10 @@ const MainRoot = DrawerNavigator(
       path: '/settings',
       screen: Settings,
     },
+    Rentcar: {
+      path: '/rentcar',
+      screen: Rentcar,
+    },
     MyCamera: {
       path: '/mycamera',
       screen: MyCamera,

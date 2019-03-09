@@ -122,7 +122,7 @@ export default class ListsScreen1 extends React.Component {
                 fontSize: 13,
                 color: 'gray',
               }}
-              onPress={() => this.props.navigation('Rentcar', {id: id, image: image, name: name })}  //this.rentCar(index, id)}
+              onPress={() => this.props.navigation.navigate('Rentcar', {id: id, image: image, name: name })}  //this.rentCar(index, id)}
               underlayColor="transparent"
             />
             //            const { navigate } = this.props.navigation;

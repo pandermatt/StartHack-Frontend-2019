@@ -26,7 +26,7 @@ export default class ListsScreen1 extends React.Component {
 
     this.state = {
       fontLoaded: false,
-      car: {},
+      //car: {navigation.getParam('finalPicture', 'NO-ID')},
       chosenDate: new Date()
     };
 
