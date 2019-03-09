@@ -7,7 +7,7 @@ import { DrawerNavigator, DrawerItems } from 'react-navigation';
 import Pricing from './src/drawer/pricing';
 import Login from './src/drawer/login';
 import Lists from './src/drawer/lists';
-import RentCar from './src/views/rentcar';
+import Rentcar from './src/views/rentcar';
 import Upload from './src/views/upload';
 import MyCamera from './src/views/camera';
 import ImageView from './src/views/imageview';
@@ -45,9 +45,9 @@ const MainRoot = DrawerNavigator(
       path: '/pricing',
       screen: Pricing,
     },
-    RentCar: {
+    Rentcar: {
       path: '/rentcar',
-      screen: RentCar,
+      screen: Rentcar,
     },
     MyCamera: {
       path: '/mycamera',
