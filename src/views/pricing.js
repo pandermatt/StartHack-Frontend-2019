@@ -15,24 +15,27 @@ class Pricing extends Component {
         </View>
         <PricingCard
           color={colors.primary}
-          title="Free"
-          price="$0"
-          info={['1 User', 'Basic Support', 'All Core Features']}
+          title="Starter"
+          price="$500"
+          info={['10 days / month', 'withouth fuel']}
           button={{ title: 'GET STARTED', icon: 'flight-takeoff' }}
+          onButtonPress={() => addSubscription("subs1")}
         />
         <PricingCard
           color={colors.secondary}
-          title="Starter"
-          price="$19"
-          info={['10 Users', 'Basic Support', 'All Core Features']}
+          title="Basic"
+          price="$800"
+          info={['20 days / month', 'withouth fuel']}
           button={{ title: 'GET STARTED', icon: 'flight-takeoff' }}
+          onButtonPress={() => addSubscription("subs2")}
         />
         <PricingCard
           color={colors.secondary2}
-          title="Enterprise"
-          price="$49"
-          info={['100 Users', 'One on One Support', 'All Core Features']}
+          title="Umlimited"
+          price="$1000"
+          info={['unlimited days / month', 'withouth fuel']}
           button={{ title: 'GET STARTED', icon: 'flight-takeoff' }}
+          onButtonPress={() => addSubscription("subs3")}
         />
       </ScrollView>
     );
@@ -41,6 +44,21 @@ class Pricing extends Component {
 
 Pricing.navigationOptions = {
   title: 'Pricing',
+};
+
+function addSubscription(title) {
+  fetch('http://130.82.237.49:8000/subscription', {
+      method: 'POST',
+      body: JSON.stringify({
+        subscription: title,
+      }),
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 };
 
 const styles = StyleSheet.create({
